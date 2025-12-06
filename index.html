@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OhMyGPT: Получи $20 на Claude API</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Glowing Background */
+        .glow-bg {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.3);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(79, 70, 229, 0.8);
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Pulse Animation for the main button */
+        @keyframes subtle-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(99, 102, 241, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .animate-pulse-glow {
+            animation: subtle-pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+
+    <!-- Background Glow Effect -->
+    <div class="glow-bg"></div>
+
+    <!-- Navigation (Simple) -->
+    <nav class="relative z-10 w-full px-6 py-6 flex justify-between items-center max-w-7xl mx-auto">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-robot text-indigo-500 text-2xl"></i>
+            <span class="font-bold text-xl tracking-tight">OhMyGPT <span class="text-indigo-400">Bonus</span></span>
+        </div>
+        <a href="#how-it-works" class="text-gray-400 hover:text-white transition-colors text-sm font-medium">Как это работает?</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="relative z-10 flex-grow flex flex-col items-center justify-center px-4 pt-10 pb-20 text-center">
+        
+        <div class="inline-flex items-center px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-semibold tracking-wide uppercase mb-6">
+            <span class="w-2 h-2 rounded-full bg-green-400 mr-2 animate-pulse"></span>
+            Limited Time Offer
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight leading-tight">
+            Дарите <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">$20</span> <br>
+            Получайте <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-600">$20</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-gray-400 max-w-2xl mb-10 leading-relaxed">
+            Приглашаю тебя в <b>OhMyGPT</b>! Получи бонус на использование мощнейшей нейросети <b>Claude API</b>. Это бесплатно для старта, нужно лишь активировать аккаунт.
+        </p>
+
+        <!-- The HUGE Link Button -->
+        <a href="https://www.ohmygpt.com/i/GHJC266D" target="_blank" class="cta-button animate-pulse-glow inline-flex items-center justify-center px-10 py-6 text-2xl md:text-3xl font-bold text-white rounded-2xl mb-6 w-full max-w-2xl mx-auto">
+            <i class="fa-solid fa-rocket mr-4"></i>
+            ЗАБРАТЬ МОИ $20
+        </a>
+        
+        <p class="text-sm text-gray-500 mb-12">
+            Нажимая кнопку, вы переходите на официальный сайт OhMyGPT
+        </p>
+
+        <!-- Copy Link Section -->
+        <div class="glass-card p-4 rounded-xl flex flex-col md:flex-row items-center gap-3 w-full max-w-xl mx-auto">
+            <div class="flex-grow bg-gray-900/50 rounded-lg px-4 py-3 text-gray-300 font-mono text-sm truncate w-full border border-gray-700">
+                https://www.ohmygpt.com/i/GHJC266D
+            </div>
+            <button onclick="copyLink()" class="w-full md:w-auto px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-medium transition-colors flex items-center justify-center gap-2">
+                <i class="fa-regular fa-copy"></i>
+                <span id="copyText">Копировать</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- Features / Terms Grid -->
+    <section id="how-it-works" class="relative z-10 bg-gray-900/50 border-t border-gray-800 py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Важные условия бонуса</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-user-check text-8xl text-indigo-500"></i>
+                    </div>
+                    <div class="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center mb-6 text-indigo-400 text-xl">
+                        <i class="fa-brands fa-google"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">1. Активация</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Чтобы получить бонус, войдите через <b>Google</b> или <b>GitHub</b>, либо пополните баланс на сумму не менее <b>$4</b>.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-server text-8xl text-purple-500"></i>
+                    </div>
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-6 text-purple-400 text-xl">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">2. Использование</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Бонус начисляется на отдельный лимит. Доступен только для определенных <b>Endpoints</b> (конечных точек) API.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-hourglass-half text-8xl text-pink-500"></i>
+                    </div>
+                    <div class="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center mb-6 text-pink-400 text-xl">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">3. Срок действия</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Не откладывайте! Срок действия бонусных средств составляет ровно <b>60 дней</b> с момента регистрации.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 py-10 border-t border-gray-900 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-gray-500 text-sm mb-4">
+                Это партнерская страница. Все права на бренд OhMyGPT принадлежат их владельцам.
+            </p>
+            <div class="flex justify-center gap-6">
+                <a href="https://www.ohmygpt.com/i/GHJC266D" class="text-gray-400 hover:text-white transition-colors">Перейти на сайт</a>
+                <span class="text-gray-700">|</span>
+                <span class="text-gray-600 cursor-default">Ref Code: GHJC266D</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function copyLink() {
+            const link = "https://www.ohmygpt.com/i/GHJC266D";
+            
+            // Create temporary input
+            const tempInput = document.createElement("input");
+            tempInput.value = link;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            // Change button text visual feedback
+            const copyText = document.getElementById("copyText");
+            const originalText = copyText.innerText;
+            const btn = copyText.parentElement;
+            
+            copyText.innerText = "Скопировано!";
+            btn.classList.remove("bg-gray-700");
+            btn.classList.add("bg-green-600", "text-white");
+            
+            setTimeout(() => {
+                copyText.innerText = originalText;
+                btn.classList.remove("bg-green-600", "text-white");
+                btn.classList.add("bg-gray-700");
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
